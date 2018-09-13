@@ -35,6 +35,14 @@ public class FormularioArco implements Serializable{
 	private String type_doc_rep;
 	private String number_doc_rep;
 	private String tipo_solicitud;
+	private String address;
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	
 	public Long getId() {
 		return id;
