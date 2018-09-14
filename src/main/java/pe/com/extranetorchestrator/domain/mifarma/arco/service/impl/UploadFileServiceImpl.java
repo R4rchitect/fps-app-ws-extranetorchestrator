@@ -13,12 +13,12 @@ import java.nio.file.Paths;
 @Service
 public class UploadFileServiceImpl implements UploadFileService {
 
-    private String upload_folder = ".//src//main//resources//files//";
+   // private String upload_folder = ".\\src\\main\\resources\\files\\";
 
-    public void saveFile(MultipartFile file) throws IOException {
+       public void saveFile(MultipartFile file) throws IOException {
         if(!file.isEmpty()){
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(upload_folder + file.getOriginalFilename());
+            Path path = Paths.get("" + file.getOriginalFilename());
             Files.write(path,bytes);
         }
     }

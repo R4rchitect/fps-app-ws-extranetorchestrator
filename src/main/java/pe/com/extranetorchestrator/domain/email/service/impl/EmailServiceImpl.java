@@ -52,6 +52,7 @@ public class EmailServiceImpl implements EmailService{
 	 
 	 MimeMessage message = javaMailSender.createMimeMessage();
      try {
+    	 System.out.println("in enviarCorreo");
 	     MimeMessageHelper helper = new MimeMessageHelper(message, true);
 	
 	     helper.setSubject(messageEmail.getAsunto());
@@ -65,21 +66,24 @@ public class EmailServiceImpl implements EmailService{
 		     }
 		     
 		     try {
-
+		    	 System.out.println("int: 3");
 		     FileSystemResource filesys = new FileSystemResource(generatePdf(formularioArco, idSolicitud));
 	         helper.addAttachment(filesys.getFilename(), filesys); 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
+					System.out.println("Exception: 3"+ e);
 					e.printStackTrace();
 				}
 	         
 	         
 		} catch (MessagingException e) {
 			e.printStackTrace();
+			System.out.println("Exception: 2"+ e);
 		}
-
+      
+     System.out.println("Enviando correo.");
 	 javaMailSender.send(message);
-	 
+	 System.out.println("Se envio");
 	}
 	
     public File generatePdf(FormularioArco formularioArco,Long idSolicitud) throws Exception {
