@@ -23,6 +23,8 @@ public class DataCorreoTemplate {
     private String tipocancelacion;
     private String tipoposicion;
     
+    private String textArea;
+    
     public DataCorreoTemplate() {
 		// TODO Auto-generated constructor stub
 	}
@@ -127,6 +129,16 @@ public class DataCorreoTemplate {
 	}
 	public void setTipoposicion(String tipoposicion) {
 		this.tipoposicion = tipoposicion;
+	}
+
+
+	public String getTextArea() {
+		return textArea;
+	}
+
+
+	public void setTextArea(String textArea) {
+		this.textArea = textArea;
 	}
     
 	

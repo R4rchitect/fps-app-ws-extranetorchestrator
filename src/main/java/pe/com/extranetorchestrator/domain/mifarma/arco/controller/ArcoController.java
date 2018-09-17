@@ -60,7 +60,9 @@ public class ArcoController {
 			  							   @RequestParam("repre_tipdoc") String repre_tipdoc,
 			  							   @RequestParam("repre_numdoc") String repre_numdoc,
 			  							   @RequestParam(value="repre_archivoAdjunto", required=false) MultipartFile repre_archivoAdjunto,
-			  							   @RequestParam(value="repre_archivoAcrediteAdjunto", required=false) MultipartFile repre_archivoAcrediteAdjunto) {
+			  							   @RequestParam(value="repre_archivoAcrediteAdjunto", required=false) MultipartFile repre_archivoAcrediteAdjunto,
+			  							   @RequestParam(value="adicional_text", required=false) String adicional_text,
+			  							   @RequestParam(value="adicional_archivoAdjunto", required=false) MultipartFile adicional_archivoAdjunto) {
 	  
 	String message = "";
 	try {
@@ -109,12 +111,15 @@ public class ArcoController {
         
         archivoAdjuntoRepository.save(archivo1);
         formularioArcoRepository.save(formulario);
+        if(adicional_archivoAdjunto!=null) {
+        lstFiles.add(convert(adicional_archivoAdjunto));	
+        }
         
 		//uploadFileService.saveFile(titu_archivo);
 		System.out.println(" MessageEmail");
 		SimpleDateFormat sm = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         MessageEmail messageEmail = new MessageEmail("MiFarma <datospersonales@mifama.com.pe>", Arrays.asList(formulario.getEmail(),"datospersonales@mifama.com.pe"), "Solicitud de derechos ARCO N° 000"+max, "Gracias por su comunicación. Se le informa que su solicitud de derechos ARCO N° 000"+max+" ha sido recibida con Fecha y hora: "+ sm.format(new Date())+" MIFARMA procederá a notificar la respuesta a su solicitud a la dirección de correo electrónico indicado en el presente formulario. El titular de datos personales autoriza y acepta la remisión de las notificaciones referidas a este procedimiento a dicha dirección. Las solicitudes se responderán dentro de los plazos establecidos en el Capítulo I del Título IV del Reglamento de la Ley de Protección de Datos Personales, aprobado por Decreto Supremo No. 003-2013-JUS. Si transcurren los plazos antes indicados sin haber recibido respuesta, usted podrá considerar denegada su solicitud, quedando a salvo su derecho de iniciar un procedimiento de tutela  ante la Dirección General de Protección de Datos Personales (Ministerio de Justicia).  Atentamente. Protección de datos personales. sta información es privada y confidencial y está dirigida únicamente a su destinatario. Si usted no es el destinatario original de este mensaje y por este medio pudo acceder a dicha información por favor elimine el mensaje. La distribución o copia de este mensaje está estrictamente prohibida. Esta comunicación es sólo para propósitos de información y no debe ser considerada como propuesta, aceptación ni como una declaración de voluntad oficial de las empresas que conforman Farmacias Peruanas. Observe por favor que éste correo ha sido creado con conocimiento que el e-mail de Internet no es un medio de comunicación 100% seguro. Aconsejamos entender y observar esta falta de seguridad cuando nos envíe correo. Las empresas que conforman Farmacias Peruanas no están obligadas  a una apropiada y completa transmisión de la información contenida en ésta comunicación ni por cualquier demora en su recibo. Las empresas que conforman Farmacias Peruanas respetan y promueven la libre competencia, por lo que adoptan sus decisiones comerciales de manera independiente. De igual forma, respetan las decisiones de cada cliente, proveedor o competidor en su desarrollo comercial, por lo que rechazan la remisión de información confidencial de titularidad de terceros, la cual será eliminada de forma inmediata por nuestros trabajadores sin posibilidad de revisar o emitir comentario alguno sobre la misma. ");
-        emailService.enviarCorreo(messageEmail, lstFiles,formulario,max);
+        emailService.enviarCorreo(messageEmail, lstFiles, formulario, max, adicional_text);
 		
 		message = "You successfully uploaded " + titu_archivo.getOriginalFilename() + "!";
 		
@@ -142,7 +147,7 @@ public class ArcoController {
   @GetMapping("/hi")
   public String hi() {
 
-	return "hi";
+	return "Hi Human";
 	
   }
   

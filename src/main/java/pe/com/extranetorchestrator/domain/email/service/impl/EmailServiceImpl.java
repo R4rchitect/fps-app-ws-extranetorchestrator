@@ -46,7 +46,7 @@ public class EmailServiceImpl implements EmailService{
     private static final String UTF_8 = "UTF-8";
 	
 	@Override
-	public void enviarCorreo(MessageEmail messageEmail, List<File> lstFile, FormularioArco formularioArco, Long idSolicitud) {
+	public void enviarCorreo(MessageEmail messageEmail, List<File> lstFile, FormularioArco formularioArco, Long idSolicitud, String adicionalText) {
 		
 	 SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 	 
@@ -67,7 +67,7 @@ public class EmailServiceImpl implements EmailService{
 		     
 		     try {
 		    	 System.out.println("int: 3");
-		     FileSystemResource filesys = new FileSystemResource(generatePdf(formularioArco, idSolicitud));
+		     FileSystemResource filesys = new FileSystemResource(generatePdf(formularioArco, idSolicitud, adicionalText));
 	         helper.addAttachment(filesys.getFilename(), filesys); 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -86,7 +86,7 @@ public class EmailServiceImpl implements EmailService{
 	 System.out.println("Se envio");
 	}
 	
-    public File generatePdf(FormularioArco formularioArco,Long idSolicitud) throws Exception {
+    public File generatePdf(FormularioArco formularioArco,Long idSolicitud, String adicionalText) throws Exception {
 
     	String nrSolicitud = "000"+idSolicitud;
         String OUTPUT_FILE = nrSolicitud+".pdf";
@@ -115,6 +115,8 @@ public class EmailServiceImpl implements EmailService{
         data.setRepre_apellidos(formularioArco.getLastname_rep());
         data.setRepre_tipodoc(formularioArco.getType_doc_rep());
         data.setRepre_numdoc(formularioArco.getNumber_doc_rep());
+        
+        data.setTextArea(adicionalText);
         
         if(formularioArco.getTipo_solicitud().equals("ACCESO")) data.setTipoacceso("X");
         if(formularioArco.getTipo_solicitud().equals("RECTIFICACION")) data.setTiporectificacion("X");
