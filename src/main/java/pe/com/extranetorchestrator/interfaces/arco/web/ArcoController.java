@@ -1,4 +1,4 @@
-package pe.com.extranetorchestrator.domain.mifarma.arco.controller;
+package pe.com.extranetorchestrator.interfaces.arco.web;
 
 import java.io.File;
 import java.io.FileNotFoundException;
