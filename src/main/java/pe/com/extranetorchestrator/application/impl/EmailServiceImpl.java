@@ -46,7 +46,7 @@ public class EmailServiceImpl implements EmailService{
     private static final String UTF_8 = "UTF-8";
 	
 	@Override
-	public void enviarCorreo(MessageEmail messageEmail, List<File> lstFile, FormularioArco formularioArco, Long idSolicitud, String adicionalText) {
+	public void enviarCorreo(FormularioArco formularioArco) {
 		
 	 SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 	 
@@ -125,27 +125,6 @@ public class EmailServiceImpl implements EmailService{
         
         Context context = new Context();
         context.setVariable("data", data);
-        
-													        /*
-													             private Date fecha;
-														private String nroSolicitud;
-														private String titu_nombres;
-														private String titu_apellidos;
-														private String titu_tipodoc;
-														private String titu_numdoc;
-														private String titu_email;
-														private String titu_domicilio;
-														
-														private String repre_nombres;
-													    private String repre_apellidos;
-													    private String repre_tipodoc;
-													    private String repre_numdoc;
-													    
-													    private String tipoacceso;
-													    private String tiporectificacion;
-													    private String tipocancelacion;
-													    private String tipoposicion;
-													         * */
 
         String renderedHtmlContent = templateEngine.process("templateFormulario", context);
         String xHtml = convertToXhtml(renderedHtmlContent);

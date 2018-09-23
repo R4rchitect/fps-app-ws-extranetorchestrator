@@ -22,6 +22,11 @@ public class FormularioArcoCommand {
 	private String adicional_text;
 	private MultipartFile adicional_archivoAdjunto;
 	
+	public FormularioArcoCommand() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	public MultipartFile getTitu_archivo() {
 		return titu_archivo;
 	}

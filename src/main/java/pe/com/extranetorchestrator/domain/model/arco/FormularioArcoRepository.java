@@ -3,7 +3,9 @@ package pe.com.extranetorchestrator.domain.model.arco;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-public interface FormularioArcoRepository extends CrudRepository<FormularioArco, Integer> {
+import pe.com.extranetorchestrator.infrastructure.persistence.jpa.arco.entity.FormularioArcoEntity;
+
+public interface FormularioArcoRepository extends CrudRepository<FormularioArcoEntity, Integer> {
 
 	@Query("SELECT coalesce(max(ch.id), 0) FROM FormularioArco ch")
 	Long getMaxId();

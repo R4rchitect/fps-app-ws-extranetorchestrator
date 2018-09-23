@@ -55,12 +55,34 @@ public class ArcoController {
   }
   
   @PostMapping("/insertform")
-  public ResponseEntity<String> insertform(@RequestBody(required=false) FormularioArcoCommand jsonRequest) {
+  public ResponseEntity<String> insertform(@RequestParam("titu_archivo") MultipartFile titu_archivo,
+										   @RequestParam("titu_nombre") String titu_nombre,
+										   @RequestParam("titu_apellidos") String titu_apellidos,
+										   @RequestParam("titu_domicilio") String titu_domicilio,
+										   @RequestParam("titu_email") String titu_email,
+										   @RequestParam("titu_numdoc") String titu_numdoc,
+										   @RequestParam("titu_tipdoc") String titu_tipdoc,
+										   @RequestParam("titu_tipoSolicitud") String titu_tipoSolicitud,
+										   @RequestParam("checkedRepre") String checkedRepre,
+										   @RequestParam("repre_nombres") String repre_nombres,
+										   @RequestParam("repre_apellidos") String repre_apellidos,
+										   @RequestParam("repre_tipdoc") String repre_tipdoc,
+										   @RequestParam("repre_numdoc") String repre_numdoc,
+										   @RequestParam(value="repre_archivoAdjunto", required=false) MultipartFile repre_archivoAdjunto,
+										   @RequestParam(value="repre_archivoAcrediteAdjunto", required=false) MultipartFile repre_archivoAcrediteAdjunto,
+										   @RequestParam("adicional_text") String adicional_text,
+										   @RequestParam(value="adicional_archivoAdjunto", required=false) MultipartFile adicional_archivoAdjunto) {
 	  
 	String message = "";
 	
-	return ResponseEntity.status(HttpStatus.OK).body(message);
-	/*
+	arcoServiceFacade.insertarFormulario(titu_archivo, titu_nombre, titu_apellidos,
+										 titu_domicilio, titu_email, titu_numdoc,
+										 titu_tipdoc, titu_tipoSolicitud, checkedRepre,
+										 repre_nombres, repre_apellidos, repre_tipdoc,
+										 repre_numdoc, repre_archivoAdjunto, repre_archivoAcrediteAdjunto,
+										 adicional_text, adicional_archivoAdjunto);
+	
+	
 	try {
 		
         Long max = formularioArcoRepository.getMaxId()+1;
@@ -125,7 +147,7 @@ public class ArcoController {
 		System.out.println("Exception: Controller1 "+ e);
 		message = "FAIL to upload " + titu_archivo.getOriginalFilename() + "!";
 		return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
-	}*/
+	}
   }
   
   public File convert(MultipartFile file) throws IOException

@@ -36,7 +36,7 @@ public class ConnectorConfig {
 
 	 connector.setScheme("http");
 
-	 connector.setPort(8080);
+	 connector.setPort(8081);
 
 	 connector.setSecure(false);
 
