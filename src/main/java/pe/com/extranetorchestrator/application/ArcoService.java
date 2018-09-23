@@ -1,4 +1,4 @@
-package pe.com.extranetorchestrator.domain.mifarma.arco.service;
+package pe.com.extranetorchestrator.application;
 
 public interface ArcoService {
 

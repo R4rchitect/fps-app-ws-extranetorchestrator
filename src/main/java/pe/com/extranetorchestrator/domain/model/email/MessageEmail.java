@@ -1,4 +1,4 @@
-package pe.com.extranetorchestrator.domain.email.model;
+package pe.com.extranetorchestrator.domain.model.email;
 
 import java.util.List;
 

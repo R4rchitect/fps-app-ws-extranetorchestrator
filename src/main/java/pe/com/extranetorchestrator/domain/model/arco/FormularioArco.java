@@ -1,4 +1,4 @@
-package pe.com.extranetorchestrator.domain.mifarma.arco.model;
+package pe.com.extranetorchestrator.domain.model.arco;
 
 import java.io.Serializable;
 import java.util.ArrayList;

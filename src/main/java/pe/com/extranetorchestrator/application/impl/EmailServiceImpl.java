@@ -1,4 +1,4 @@
-package pe.com.extranetorchestrator.domain.email.service.impl;
+package pe.com.extranetorchestrator.application.impl;
 
 import static com.itextpdf.text.pdf.BaseFont.EMBEDDED;
 import static com.itextpdf.text.pdf.BaseFont.IDENTITY_H;
@@ -31,10 +31,10 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.w3c.tidy.Tidy;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
-import pe.com.extranetorchestrator.domain.email.model.MessageEmail;
-import pe.com.extranetorchestrator.domain.email.service.EmailService;
-import pe.com.extranetorchestrator.domain.mifarma.arco.model.DataCorreoTemplate;
-import pe.com.extranetorchestrator.domain.mifarma.arco.model.FormularioArco;
+import pe.com.extranetorchestrator.application.EmailService;
+import pe.com.extranetorchestrator.domain.model.arco.DataCorreoTemplate;
+import pe.com.extranetorchestrator.domain.model.arco.FormularioArco;
+import pe.com.extranetorchestrator.domain.model.email.MessageEmail;
 
 @Service
 public class EmailServiceImpl implements EmailService{

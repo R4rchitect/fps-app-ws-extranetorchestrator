@@ -1,9 +1,9 @@
-package pe.com.extranetorchestrator.domain.mifarma.arco.service.impl;
+package pe.com.extranetorchestrator.application.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import pe.com.extranetorchestrator.domain.mifarma.arco.service.UploadFileService;
+import pe.com.extranetorchestrator.application.UploadFileService;
 
 import java.io.IOException;
 import java.nio.file.Files;

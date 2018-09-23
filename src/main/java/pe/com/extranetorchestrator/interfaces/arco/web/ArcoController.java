@@ -16,18 +16,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import pe.com.extranetorchestrator.domain.email.model.MessageEmail;
-import pe.com.extranetorchestrator.domain.email.service.EmailService;
-import pe.com.extranetorchestrator.domain.mifarma.arco.model.ArchivoAdjunto;
-import pe.com.extranetorchestrator.domain.mifarma.arco.model.FormularioArco;
-import pe.com.extranetorchestrator.domain.mifarma.arco.repository.ArchivoAdjuntoRepository;
-import pe.com.extranetorchestrator.domain.mifarma.arco.repository.FormularioArcoRepository;
-import pe.com.extranetorchestrator.domain.mifarma.arco.service.UploadFileService;
+import pe.com.extranetorchestrator.application.EmailService;
+import pe.com.extranetorchestrator.application.UploadFileService;
+import pe.com.extranetorchestrator.domain.model.arco.ArchivoAdjunto;
+import pe.com.extranetorchestrator.domain.model.arco.ArchivoAdjuntoRepository;
+import pe.com.extranetorchestrator.domain.model.arco.FormularioArco;
+import pe.com.extranetorchestrator.domain.model.arco.FormularioArcoRepository;
+import pe.com.extranetorchestrator.domain.model.email.MessageEmail;
+import pe.com.extranetorchestrator.interfaces.arco.facade.ArcoServiceFacade;
+import pe.com.extranetorchestrator.interfaces.arco.web.command.FormularioArcoCommand;
 
 @Controller
 @RequestMapping(value = "/mifarma/arco")
@@ -45,26 +48,19 @@ public class ArcoController {
   @Autowired
   private ArchivoAdjuntoRepository archivoAdjuntoRepository;
   
+  private final ArcoServiceFacade arcoServiceFacade;
+  
+  public ArcoController(final ArcoServiceFacade arcoServiceFacade) {
+	  this.arcoServiceFacade = arcoServiceFacade;
+  }
+  
   @PostMapping("/insertform")
-  public ResponseEntity<String> insertform(@RequestParam("titu_archivo") MultipartFile titu_archivo,
-		  								   @RequestParam("titu_nombre") String titu_nombre,
-		  								   @RequestParam("titu_apellidos") String titu_apellidos,
-			  							   @RequestParam("titu_domicilio") String titu_domicilio,
-			  							   @RequestParam("titu_email") String titu_email,
-			  							   @RequestParam("titu_numdoc") String titu_numdoc,
-			  							   @RequestParam("titu_tipdoc") String titu_tipdoc,
-			  							   @RequestParam("titu_tipoSolicitud") String titu_tipoSolicitud,
-			  							   @RequestParam("checkedRepre") String checkedRepre,
-			  							   @RequestParam("repre_nombres") String repre_nombres,
-				  						   @RequestParam("repre_apellidos") String repre_apellidos,
-			  							   @RequestParam("repre_tipdoc") String repre_tipdoc,
-			  							   @RequestParam("repre_numdoc") String repre_numdoc,
-			  							   @RequestParam(value="repre_archivoAdjunto", required=false) MultipartFile repre_archivoAdjunto,
-			  							   @RequestParam(value="repre_archivoAcrediteAdjunto", required=false) MultipartFile repre_archivoAcrediteAdjunto,
-			  							   @RequestParam(value="adicional_text", required=false) String adicional_text,
-			  							   @RequestParam(value="adicional_archivoAdjunto", required=false) MultipartFile adicional_archivoAdjunto) {
+  public ResponseEntity<String> insertform(@RequestBody(required=false) FormularioArcoCommand jsonRequest) {
 	  
 	String message = "";
+	
+	return ResponseEntity.status(HttpStatus.OK).body(message);
+	/*
 	try {
 		
         Long max = formularioArcoRepository.getMaxId()+1;
@@ -129,7 +125,7 @@ public class ArcoController {
 		System.out.println("Exception: Controller1 "+ e);
 		message = "FAIL to upload " + titu_archivo.getOriginalFilename() + "!";
 		return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
-	}
+	}*/
   }
   
   public File convert(MultipartFile file) throws IOException
@@ -147,7 +143,7 @@ public class ArcoController {
   @GetMapping("/hi")
   public String hi() {
 
-	return "Hi Human";
+	return "Hi";
 	
   }
   

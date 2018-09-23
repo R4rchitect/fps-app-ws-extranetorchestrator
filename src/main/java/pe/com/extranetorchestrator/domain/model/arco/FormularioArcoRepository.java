@@ -1,9 +1,7 @@
-package pe.com.extranetorchestrator.domain.mifarma.arco.repository;
+package pe.com.extranetorchestrator.domain.model.arco;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
-import pe.com.extranetorchestrator.domain.mifarma.arco.model.FormularioArco;
 
 public interface FormularioArcoRepository extends CrudRepository<FormularioArco, Integer> {
 

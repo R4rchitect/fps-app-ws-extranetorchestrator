@@ -1,8 +1,6 @@
-package pe.com.extranetorchestrator.domain.mifarma.arco.repository;
+package pe.com.extranetorchestrator.domain.model.arco;
 
 import org.springframework.data.repository.CrudRepository;
-
-import pe.com.extranetorchestrator.domain.mifarma.arco.model.ArchivoAdjunto;
 
 public interface ArchivoAdjuntoRepository extends CrudRepository<ArchivoAdjunto, Integer> {
 
